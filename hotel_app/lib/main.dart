@@ -1,19 +1,13 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_app/screens/loginScreen.dart';
 import './screens/homeScreen.dart';
-import 'package:firebase_database/firebase_database.dart';
 import './screens/registerationScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
   runApp(MyApp());
 }
 
-DatabaseReference userRef =
-    FirebaseDatabase.instance.reference().child('users');
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hotel_app/main.dart';
 import 'package:hotel_app/screens/loginScreen.dart';
-import './homeScreen.dart';
-import '../widgets/progressDialog.dart';
+import '../api_controller.dart';
 
 class registerationScreen extends StatelessWidget {
   static const String idScreen = 'register';
@@ -14,40 +11,6 @@ class registerationScreen extends StatelessWidget {
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  void registerNewUser(BuildContext context) async {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return ProgressDialog(
-            message: "Đang đăng ký, vui lòng chờ...",
-          );
-        });
-    final User firebaseUser = (await _auth
-            .createUserWithEmailAndPassword(
-                email: email.text, password: password.text)
-            .catchError((errMsg) {
-      Navigator.pop(context);
-      Fluttertoast.showToast(msg: errMsg);
-    }))
-        .user;
-    if (firebaseUser != null) {
-      userRef.child(firebaseUser.uid);
-      Map userDataMap = {
-        'name': name.text.trim(),
-        'email': email.text.trim(),
-        'phone': phone.text.trim(),
-      };
-      userRef.child(firebaseUser.uid).set(userDataMap);
-      Fluttertoast.showToast(msg: 'Đăng ký thành công');
-      Navigator.pushNamed(context, HomeScreen.idScreen);
-    } else {
-      Navigator.pop(context);
-      Fluttertoast.showToast(msg: "Đăng ký không thành công");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +137,7 @@ class registerationScreen extends StatelessWidget {
                           Fluttertoast.showToast(
                               msg: 'Mật khẩu phải từ 6 kí tự trở lên');
                         } else {
-                          registerNewUser(context);
+                          registerNewUser(context, name.text, email.text, phone.text, password.text);
                         }
                       },
                     ),
