@@ -9,6 +9,8 @@ import 'package:hotel_app/widgets/hotel_carousel.dart';
 import '../widgets/destination_carsousel.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String idScreen = 'home';
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
