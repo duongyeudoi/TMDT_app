@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import './screens/homeScreen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import './models/hotel_model.dart';
 
 String generateMd5(String input) {
   return md5.convert(utf8.encode(input)).toString();
@@ -64,4 +65,30 @@ void loginAuth(BuildContext context, String email, String password) async {
     Fluttertoast.showToast(msg: "Không thể đăng nhập");
   }
   return;
+}
+
+Future<List<Hotel>> getHotelsByDestination(String destination) async {
+
+  final response = await http.get(Uri.parse('http://13.213.73.64:5000/hotel_info?district=$destination'));
+  List temp = jsonDecode(response.body);
+  List<Hotel> hotels = [];
+  for(int i=0; i<temp.length; i++) {
+      Hotel receivedHotel = Hotel(
+      address: temp[i]["address"],
+      imageUrl: temp[i]["image"],
+      name: temp[i]["name"],
+      longitude: double.parse(temp[i]["longitude"]),
+      latitude: temp[i]["latitude"],
+      overnightprice: temp[i]["price"],
+      twohourprice: temp[i]["price2hours"],
+      rating: temp[i]["rating"],
+      introduction: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.In porta euismod neque, vel sagittis augue suscipit et. In sapien ipsum, vehicula sit amet ante non, sollicitudin venenatis est.Vivamus imperdiet venenatis tellus eget fringilla.',
+      );
+      hotels.add(receivedHotel);
+  }
+
+  if(hotels == null) return temp_hotels;
+
+  return hotels;
+
 }

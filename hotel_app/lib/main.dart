@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hotel_app/screens/loginScreen.dart';
 import './screens/homeScreen.dart';
 import './screens/registerationScreen.dart';
+import './models/destination_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  loadDataOfDestinations();
   runApp(MyApp());
 }
 
