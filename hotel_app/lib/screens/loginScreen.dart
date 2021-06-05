@@ -1,12 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import './homeScreen.dart';
 import './registerationScreen.dart';
-import '../widgets/progressDialog.dart';
-
-import '../main.dart';
+import '../api_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String idScreen = 'login';
@@ -18,42 +12,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void loginAuth(BuildContext context) async {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return ProgressDialog(
-            message: "Đang xác thực, vui lòng chờ...",
-          );
-        });
-    final User firebaseUser = (await _auth
-            .signInWithEmailAndPassword(
-                email: email.text, password: password.text)
-            .catchError((errMsg) {
-      Navigator.pop(context);
-      Fluttertoast.showToast(msg: errMsg);
-    }))
-        .user;
-    if (firebaseUser != null) {
-      userRef.child(firebaseUser.uid).once().then((DataSnapshot snap) {
-        if (snap.value != null) {
-          Navigator.pushNamed(context, HomeScreen.idScreen);
-          Fluttertoast.showToast(msg: 'Đăng nhập thành công');
-        } else {
-          Navigator.pop(context);
 
-          _auth.signOut();
-          Fluttertoast.showToast(msg: 'Tài khoản không tồn tại');
-        }
-      });
-    } else {
-      Navigator.pop(context);
-      Fluttertoast.showToast(msg: "Không thể đăng nhập");
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: new BorderRadius.circular(24.0),
                       ),
                       onPressed: () {
-                        loginAuth(context);
+                        loginAuth(context, email.text, password.text);
                       },
                     ),
                   ],

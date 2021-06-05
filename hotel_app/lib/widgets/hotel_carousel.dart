@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hotel_app/models/hotel_model.dart';
 import 'package:hotel_app/screens/hotelDetails.dart';
 
@@ -39,9 +38,9 @@ class HotelCarousel extends StatelessWidget {
           height: 300.0,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: hotels.length,
+            itemCount: temp_hotels.length,
             itemBuilder: (BuildContext context, int index) {
-              Hotel hotel = hotels[index];
+              Hotel hotel = temp_hotels[index];
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
