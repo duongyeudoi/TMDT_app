@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/screens/search.dart';
 import 'package:hotel_app/widgets/destination_carsousel.dart';
 import 'package:hotel_app/widgets/hotel_carousel.dart';
 
@@ -26,7 +27,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   ),
                   IconButton(
                     icon: Icon(Icons.search),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => Search()));
+                    },
                     color: Theme.of(context).primaryColor,
                   ),
                 ],

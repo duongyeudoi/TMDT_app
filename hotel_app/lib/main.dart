@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_app/screens/loginScreen.dart';
+
 import './screens/homeScreen.dart';
 import 'package:firebase_database/firebase_database.dart';
 import './screens/registerationScreen.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Travel UI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Color(0xFF3EBACE),
+        primaryColor: Color(0xFF0E52E1),
         accentColor: Color(0xFFD8ECF1),
         scaffoldBackgroundColor: Color(0xFFF3F5F7),
       ),
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.idScreen: (context) => LoginScreen(),
         HomeScreen.idScreen: (context) => HomeScreen(),
       },
-      initialRoute: LoginScreen.idScreen,
+      initialRoute: HomeScreen.idScreen,
     );
   }
 }

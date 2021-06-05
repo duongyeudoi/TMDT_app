@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_app/models/hotel_model.dart';
+import 'package:hotel_app/screens/checkoutScreen.dart';
 
 class HotelDetail extends StatefulWidget {
   final Hotel hotel;
@@ -38,6 +39,13 @@ class _HotelDetailState extends State<HotelDetail> {
                   ),
                   fit: BoxFit.cover,
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(0.0, 2.0),
+                    blurRadius: 6.0,
+                  )
+                ],
               ),
               child: Stack(
                 children: [
@@ -358,21 +366,33 @@ class _HotelDetailState extends State<HotelDetail> {
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 8,
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        top: 18, bottom: 18, right: 16, left: 16),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Đặt ngay',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => PaymentScreen(
+                          hotel: widget.hotel,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Expanded(
+                    flex: 8,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          top: 18, bottom: 18, right: 16, left: 16),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Đặt ngay',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
