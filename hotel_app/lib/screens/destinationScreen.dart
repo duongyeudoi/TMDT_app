@@ -165,6 +165,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.w600,
                                           ),
+                                          maxLines: 2,
                                         ),
                                         Padding(
                                           padding:
