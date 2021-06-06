@@ -54,10 +54,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               )
             ],
           ),
+          Container(
+            height: 88.0,
+          ),
           Expanded(
             child: ListView.builder(
                 itemCount: labels.length,
-                padding: EdgeInsets.only(top: 88.0),
+                padding: EdgeInsets.only(top: 0.0),
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: Icon(

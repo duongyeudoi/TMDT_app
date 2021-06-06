@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:hotel_app/screens/eventsScreen.dart';
 import 'package:hotel_app/screens/mainHomeScreen.dart';
 import 'package:hotel_app/screens/nearbyScreen.dart';
