@@ -4,8 +4,6 @@ import 'package:hotel_app/screens/eventsScreen.dart';
 import 'package:hotel_app/screens/mainHomeScreen.dart';
 import 'package:hotel_app/screens/nearbyScreen.dart';
 import 'package:hotel_app/screens/profileScreen.dart';
-import 'package:hotel_app/widgets/hotel_carousel.dart';
-import '../widgets/destination_carsousel.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String idScreen = 'home';
