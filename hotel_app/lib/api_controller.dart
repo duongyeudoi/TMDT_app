@@ -10,6 +10,7 @@ import './models/hotel_model.dart';
 import 'package:geolocator/geolocator.dart';
 
 Position currentLocation;
+String currentUserName;
 
 String generateMd5(String input) {
   return md5.convert(utf8.encode(input)).toString();
@@ -80,6 +81,7 @@ void registerNewUser(BuildContext context, String name, String email,
 
   if (response.statusCode == 200) {
     Fluttertoast.showToast(msg: 'Đăng ký thành công');
+    currentUserName = email.trim();
     Navigator.pushNamed(context, HomeScreen.idScreen);
   } else {
     Navigator.pop(context);
@@ -99,14 +101,14 @@ void loginAuth(BuildContext context, String email, String password) async {
       });
   email = email.trim();
   String hashdedPassword = generateMd5(password.trim());
-  String uri =
-      'http://13.213.73.64:5000/user_validate?user="$email"&password="$hashdedPassword"';
+  String uri = 'http://13.213.73.64:5000/user_validate?user="$email"&password="$hashdedPassword"';
   final response = await http.get(Uri.parse(uri));
   Map<String, dynamic> resBody = jsonDecode(response.body);
 
   if (resBody["result"] == "true") {
     Navigator.pushNamed(context, HomeScreen.idScreen);
     Fluttertoast.showToast(msg: 'Đăng nhập thành công');
+    currentUserName = email.trim();
   } else {
     Navigator.pop(context);
     Fluttertoast.showToast(msg: "Không thể đăng nhập");
@@ -115,8 +117,7 @@ void loginAuth(BuildContext context, String email, String password) async {
 }
 
 Future<List<Hotel>> getHotelsByDestination(String destination) async {
-  final response = await http.get(
-      Uri.parse('http://13.213.73.64:5000/hotel_info?district=$destination'));
+  final response = await http.get(Uri.parse('http://13.213.73.64:5000/hotel_info?district=$destination'));
   List temp = jsonDecode(response.body);
   List<Hotel> hotels = [];
   for (int i = 0; i < temp.length; i++) {
@@ -129,6 +130,7 @@ Future<List<Hotel>> getHotelsByDestination(String destination) async {
       overnightprice: temp[i]["price"],
       twohourprice: temp[i]["price2hours"],
       rating: temp[i]["rating"],
+      id: temp[i]["idHotel"],
       introduction:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.In porta euismod neque, vel sagittis augue suscipit et. In sapien ipsum, vehicula sit amet ante non, sollicitudin venenatis est.Vivamus imperdiet venenatis tellus eget fringilla.',
     );
@@ -138,4 +140,47 @@ Future<List<Hotel>> getHotelsByDestination(String destination) async {
   if (hotels == null) return temp_hotels;
 
   return hotels;
+}
+
+void addHotelToFavourite(BuildContext context,Hotel hotel) async {
+
+  final response = await http.post(
+    Uri.parse("http://13.213.73.64:5000/user_favorite_register"),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'user': currentUserName,
+      'hotelId': hotel.id.toString(),
+    }),
+  );
+
+  if(response.statusCode == 200) {
+    Fluttertoast.showToast(msg: "Đã thêm khách sạn vào danh sách ưa thích!");
+  } else {
+    Fluttertoast.showToast(msg: "Có lỗi xảy ra!");
+
+  };
+}
+
+Future<void> getFavouriteHotels() async{
+  final response = await http.get(Uri.parse("http://13.213.73.64:5000/user_hotel_favourite?user=$currentUserName"));
+  List temp = jsonDecode(response.body);
+  favoriteHotels = [];
+  for (int i = 0; i < temp.length; i++) {
+    Hotel receivedHotel = Hotel(
+      address: temp[i]["address"],
+      imageUrl: temp[i]["image"],
+      name: temp[i]["name"],
+      longitude: double.parse(temp[i]["longitude"]),
+      latitude: temp[i]["latitude"],
+      overnightprice: temp[i]["price"],
+      twohourprice: temp[i]["price2hours"],
+      rating: temp[i]["rating"],
+      id: temp[i]["idHotel"],
+      introduction:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.In porta euismod neque, vel sagittis augue suscipit et. In sapien ipsum, vehicula sit amet ante non, sollicitudin venenatis est.Vivamus imperdiet venenatis tellus eget fringilla.',
+    );
+    favoriteHotels.add(receivedHotel);
+  }
 }

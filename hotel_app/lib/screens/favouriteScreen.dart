@@ -7,6 +7,7 @@ import 'package:hotel_app/screens/hotelDetails.dart';
 import 'package:hotel_app/screens/success.dart';
 import 'package:hotel_app/widgets/overNightpicker.dart';
 import 'package:hotel_app/widgets/twoHourspicker.dart';
+import '../api_controller.dart';
 
 class FavouriteScreen extends StatefulWidget {
   final Hotel hotel;
@@ -16,8 +17,17 @@ class FavouriteScreen extends StatefulWidget {
 }
 
 class _FavouriteScreenState extends State<FavouriteScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getFavouriteHotels();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -35,9 +45,9 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
       ),
       body: ListView.builder(
         scrollDirection: Axis.vertical,
-        itemCount: temp_favorite.length,
+        itemCount: favoriteHotels.length,
         itemBuilder: (BuildContext context, int index) {
-          Hotel hotel = temp_favorite[index];
+          Hotel hotel = favoriteHotels[index];
           return GestureDetector(
             onTap: () {
               Navigator.push(
@@ -56,9 +66,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       image: DecorationImage(
-                        image: AssetImage(
-                          hotel.imageUrl,
-                        ),
+                        image: NetworkImage(hotel.imageUrl),
                         fit: BoxFit.cover,
                       ),
                     ),

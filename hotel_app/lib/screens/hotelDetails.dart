@@ -4,6 +4,8 @@ import 'package:hotel_app/screens/checkoutScreen.dart';
 import 'package:hotel_app/screens/favouriteScreen.dart';
 import 'package:hotel_app/screens/hotelLocationScreen.dart';
 import 'package:hotel_app/screens/seeallScreen.dart';
+import 'package:hotel_app/widgets/progressDialog.dart';
+import '../api_controller.dart';
 
 class HotelDetail extends StatefulWidget {
   final Hotel hotel;
@@ -372,8 +374,8 @@ class _HotelDetailState extends State<HotelDetail> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      if (temp_favorite.contains(widget.hotel) == false)
-                        temp_favorite.add(widget.hotel);
+                      //TODO: add nofti that " Khach san da duoc them vao danh sach yeu thich cua ban"
+                      addHotelToFavourite( context, widget.hotel);
                     });
                   },
                   child: Container(

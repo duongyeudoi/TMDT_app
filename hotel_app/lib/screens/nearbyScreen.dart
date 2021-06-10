@@ -29,8 +29,7 @@ class _NearbyScreenState extends State<NearbyScreen> {
 
     for(int i = 0; i < destinations.length; i++)
       for(int j = 0; j < destinations[i].hotels.length; j++)
-        //TODO: reverse lat and long of the hotel here
-        _addCircle(destinations[i].hotels[j].longitude, destinations[i].hotels[j].latitude, "#db0d33");
+        _addCircle(destinations[i].hotels[j].latitude, destinations[i].hotels[j].longitude, "#db0d33");
   }
 
   void _onMapCreated(WeMapController controller) {

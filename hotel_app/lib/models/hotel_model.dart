@@ -8,6 +8,7 @@ class Hotel {
   int rating;
   double longitude;
   double latitude;
+  int id;
 
   Hotel({
     this.imageUrl,
@@ -19,10 +20,11 @@ class Hotel {
     this.rating,
     this.longitude,
     this.latitude,
+    this.id
   });
 }
 
-List<Hotel> temp_favorite = [];
+List<Hotel> favoriteHotels = [];
 
 List<Hotel> temp_hotels = [
   Hotel(

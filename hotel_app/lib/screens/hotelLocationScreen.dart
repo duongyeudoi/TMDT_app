@@ -33,8 +33,7 @@ class _HotelLocationScreenState extends State<HotelLocationScreen> {
     List<LatLng> points = [];
 
     points.add(LatLng(currentLocation.latitude, currentLocation.longitude)); //origin Point
-    //TODO reverse lat long after QuangHuy edit database
-    points.add(LatLng(widget.hotel.longitude,widget.hotel.latitude));
+    points.add(LatLng(widget.hotel.latitude,widget.hotel.longitude));
 
 
     final json = await directionAPI.getResponseMultiRoute(1, points); //0 = car, 1 = bike, 2 = foot
