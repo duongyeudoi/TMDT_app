@@ -374,7 +374,8 @@ class _HotelDetailState extends State<HotelDetail> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      temp_favorite.add(widget.hotel);
+                      if (temp_favorite.contains(widget.hotel) == false)
+                        temp_favorite.add(widget.hotel);
                     });
                   },
                   child: Container(
