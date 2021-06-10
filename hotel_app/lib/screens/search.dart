@@ -32,7 +32,7 @@ class _SearchState extends State<Search> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text(
-              'Xin chào Pham Anh Cuong! Bạn muốn tìm gì?',
+              'Xin chào Nguyễn Quang Đại Dương! Bạn muốn tìm gì?',
               style: TextStyle(
                 fontSize: 32.0,
                 fontWeight: FontWeight.w600,
