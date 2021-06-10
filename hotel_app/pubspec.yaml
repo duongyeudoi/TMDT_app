@@ -33,10 +33,13 @@ dependencies:
   http: ^0.13.3
   crypto: ^3.0.1
   intl: ^0.17.0
+  geolocator: ^7.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  wemapgl:
+    path: ./wemap_sdk
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

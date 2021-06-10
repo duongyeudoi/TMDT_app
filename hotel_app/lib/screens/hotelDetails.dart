@@ -35,9 +35,7 @@ class _HotelDetailState extends State<HotelDetail> {
                   bottomRight: Radius.circular(24),
                 ),
                 image: DecorationImage(
-                  //TODO: replace hotel image here
-                  image: NetworkImage(
-                      "https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768"),
+                  image: NetworkImage( widget.hotel.imageUrl),
                   fit: BoxFit.cover,
                 ),
                 boxShadow: [
@@ -72,7 +70,7 @@ class _HotelDetailState extends State<HotelDetail> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => HotelLocationScreen(),
+                            builder: (_) => HotelLocationScreen( hotel: widget.hotel, ),
                           ),
                         );
                       },

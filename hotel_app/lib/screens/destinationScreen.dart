@@ -265,8 +265,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                           borderRadius: BorderRadius.circular(20.0),
                           child: Image(
                             width: 110.0,
-                            //TODO: replace hotel image here
-                            image: AssetImage("assets/images/hotel0.jpg"),
+                            image: NetworkImage(hotel.imageUrl),
                             fit: BoxFit.cover,
                           ),
                         ),

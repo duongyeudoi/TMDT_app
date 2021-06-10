@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/api_controller.dart';
 import 'package:hotel_app/screens/loginScreen.dart';
-
+import 'package:wemapgl/wemapgl.dart';
 import './screens/homeScreen.dart';
 import './screens/registerationScreen.dart';
 import './models/destination_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  getCurrentLocation();
+  Configuration.setWeMapKey('GqfwrZUEfxbwbnQUhtBMFivEysYIxelQ');
   loadDataOfDestinations();
   runApp(MyApp());
 }
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.idScreen: (context) => LoginScreen(),
         HomeScreen.idScreen: (context) => HomeScreen(),
       },
-      initialRoute: HomeScreen.idScreen,
+      initialRoute: LoginScreen.idScreen,
     );
   }
 }
