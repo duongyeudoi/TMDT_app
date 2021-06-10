@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:hotel_app/screens/eventsScreen.dart';
+import 'package:hotel_app/screens/favouriteScreen.dart';
 import 'package:hotel_app/screens/mainHomeScreen.dart';
 import 'package:hotel_app/screens/nearbyScreen.dart';
 import 'package:hotel_app/screens/profileScreen.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final Tabs = [
     MainHomeScreen(),
     NearbyScreen(),
+    FavouriteScreen(),
     EventScreen(),
     ProfileScreen(),
   ];
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30.0,
             ),
             title: Text(
-              'Home',
+              'Trang chủ',
               style: bottomTextStyle,
             ),
           ),
@@ -56,17 +58,26 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30.0,
             ),
             title: Text(
-              'Nearby',
+              'Gần đây',
               style: bottomTextStyle,
             ),
           ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.bookmark,
+                size: 40.0,
+              ),
+              title: Text(
+                'Yêu thích',
+                style: bottomTextStyle,
+              )),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.takeout_dining,
               size: 30.0,
             ),
             title: Text(
-              'Events',
+              'Khuyến mãi',
               style: bottomTextStyle,
             ),
           ),
@@ -76,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30.0,
             ),
             title: Text(
-              'Proflie',
+              'Cá nhân',
               style: bottomTextStyle,
             ),
           ),

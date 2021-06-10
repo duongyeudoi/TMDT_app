@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Positioned(
                 bottom: -88,
                 child: Text(
-                  'Phạm Anh Cường',
+                  'Nguyễn Quang Đại Dương',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,

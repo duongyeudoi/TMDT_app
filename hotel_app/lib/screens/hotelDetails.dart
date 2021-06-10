@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_app/models/hotel_model.dart';
 import 'package:hotel_app/screens/checkoutScreen.dart';
+import 'package:hotel_app/screens/favouriteScreen.dart';
 import 'package:hotel_app/screens/hotelLocationScreen.dart';
+import 'package:hotel_app/screens/seeallScreen.dart';
 
 class HotelDetail extends StatefulWidget {
   final Hotel hotel;
@@ -367,7 +369,31 @@ class _HotelDetailState extends State<HotelDetail> {
             flex: 3,
             child: Row(
               children: [
-                Container(
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if (temp_favorite.contains(widget.hotel) == false)
+                        temp_favorite.add(widget.hotel);
+                    });
+                  },
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    margin: EdgeInsets.all(18.0),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.favorite_border,
+                        color: Theme.of(context).accentColor,
+                        size: 48.0,
+                      ),
+                    ),
+                  ),
+                ),
+                /*Container(
                   width: 80,
                   height: 80,
                   margin: EdgeInsets.all(18.0),
@@ -382,7 +408,7 @@ class _HotelDetailState extends State<HotelDetail> {
                       size: 48.0,
                     ),
                   ),
-                ),
+                ),*/
                 GestureDetector(
                   onTap: () {
                     Navigator.push(

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 List<String> labels = [
-  'Notifications',
-  'Payments',
-  'Message',
-  'My Orders',
-  'Setting Account',
-  'Call Center',
-  'About Applications',
+  'Thông báo',
+  'Phương thức thanh toán',
+  'Tin nhắn',
+  'Lịch sử đặt phòng',
+  'Cài đặt',
+  'Trung tâm hỗ trợ',
+  'Về ứng dụng',
 ];
 
 final icons = [

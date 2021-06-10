@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hotel_app/screens/checkoutScreen.dart';
 import 'package:hotel_app/screens/destinationScreen.dart';
+import 'package:hotel_app/screens/homeScreen.dart';
+import 'package:hotel_app/screens/nearbyScreen.dart';
+import 'package:hotel_app/models/district.dart';
+import 'package:hotel_app/screens/seeallScreen.dart';
 
 import '../models/destination_model.dart';
 
@@ -22,14 +27,19 @@ class DestinationCarousel extends StatelessWidget {
                   letterSpacing: 1.5,
                 ),
               ),
-              GestureDetector(
-                onTap: () {},
+              TextButton(
                 child: Text(
                   'Xem tất cả',
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 1.0,
+                  ),
+                ),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SeeAllScreen(),
                   ),
                 ),
               ),

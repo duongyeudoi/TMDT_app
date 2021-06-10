@@ -32,7 +32,7 @@ class _SearchState extends State<Search> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text(
-              'Xin chào Pham Anh Cuong! Bạn muốn tìm gì?',
+              'Xin chào Nguyễn Quang Đại Dương! Bạn muốn tìm gì?',
               style: TextStyle(
                 fontSize: 32.0,
                 fontWeight: FontWeight.w600,
@@ -60,7 +60,7 @@ class _SearchState extends State<Search> {
             ),
           ),
           StickyLabel(
-            text: 'Popular Keywords',
+            text: 'Từ khoá phổ biến',
             textColor: Theme.of(context).primaryColor,
           ),
           Container(
@@ -78,7 +78,7 @@ class _SearchState extends State<Search> {
             ),
           ),
           StickyLabel(
-            text: 'Favourite',
+            text: 'Yêu thích',
             textColor: Theme.of(context).primaryColor,
           ),
           SizedBox(height: 20.0),
