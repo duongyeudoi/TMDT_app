@@ -32,13 +32,3 @@ List<String> districts = [
   'Huyện Thường Tín',
   'Huyện Ứng Hoà',
 ];
-
-final icons = [
-  Icons.notifications,
-  Icons.payment,
-  Icons.message,
-  Icons.list_alt,
-  Icons.settings,
-  Icons.person,
-  Icons.info,
-];

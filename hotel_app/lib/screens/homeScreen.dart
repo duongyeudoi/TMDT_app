@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:hotel_app/screens/eventsScreen.dart';
+import 'package:hotel_app/screens/favouriteScreen.dart';
 import 'package:hotel_app/screens/mainHomeScreen.dart';
 import 'package:hotel_app/screens/nearbyScreen.dart';
 import 'package:hotel_app/screens/profileScreen.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final Tabs = [
     MainHomeScreen(),
     NearbyScreen(),
+    //FavouriteScreen(),
     EventScreen(),
     ProfileScreen(),
   ];
@@ -59,6 +61,16 @@ class _HomeScreenState extends State<HomeScreen> {
               'Nearby',
               style: bottomTextStyle,
             ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.bookmark,
+              size: 40.0,
+            ),
+            title: Text(
+              'Bookmark',
+              style: bottomTextStyle,
+            )
           ),
           BottomNavigationBarItem(
             icon: Icon(
