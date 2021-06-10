@@ -3,13 +3,10 @@ import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_app/models/hotel_model.dart';
+import 'package:hotel_app/screens/hotelDetails.dart';
 import 'package:hotel_app/screens/success.dart';
 import 'package:hotel_app/widgets/overNightpicker.dart';
 import 'package:hotel_app/widgets/twoHourspicker.dart';
-
-enum Status { first, second, third, fourth }
-
-var Hotels = [];
 
 class FavouriteScreen extends StatefulWidget {
   final Hotel hotel;
@@ -19,42 +16,6 @@ class FavouriteScreen extends StatefulWidget {
 }
 
 class _FavouriteScreenState extends State<FavouriteScreen> {
-  Status _type = Status.first;
-  int value = 0;
-  final Labels = [
-    'Thanh toán tại khách sạn',
-    'Internet Banking (Thẻ ATM)',
-    'Thẻ tín dụng',
-    'Paypal',
-  ];
-  final LabelsIcon = [
-    Icons.money_off,
-    Icons.credit_card,
-    Icons.payment,
-    Icons.account_balance_wallet,
-  ];
-
-
-
-  int i = 0;
-
-  String getPrice(int value) {
-    if (value == 0) {
-      return '\$${widget.hotel.twohourprice}';
-    } else {
-      return '\$${widget.hotel.overnightprice}';
-    }
-  }
-
-  void initState() {
-    super.initState();
-  }
-
-  final tabs = [
-    twoHourspicker(),
-    OverNightPicker(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +32,69 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           padding: EdgeInsets.only(left: 5.0),
           child: Image.asset('assets/images/bookme.png'),
         ),
+      ),
+      body: ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: temp_favorite.length,
+        itemBuilder: (BuildContext context, int index) {
+          Hotel hotel = temp_favorite[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => HotelDetail(hotel: hotel),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Stack(
+                children: [
+                  Container(
+                    height: 200.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: AssetImage(
+                          hotel.imageUrl,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 5.0,
+                    bottom: 5.0,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => HotelDetail(hotel: hotel),
+                          ),
+                        );
+                      },
+                      child: Text('Xem ngay'),
+                    ),
+                  ),
+                  Positioned(
+                    top: 10.0,
+                    left: 10.0,
+                    child: Text(
+                      hotel.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

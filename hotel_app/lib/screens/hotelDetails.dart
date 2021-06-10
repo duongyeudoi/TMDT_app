@@ -373,14 +373,9 @@ class _HotelDetailState extends State<HotelDetail> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => FavouriteScreen(
-                          hotel: widget.hotel,
-                        ),
-                      ),
-                    );
+                    setState(() {
+                      temp_favorite.add(widget.hotel);
+                    });
                   },
                   child: Container(
                     width: 80,
@@ -393,7 +388,7 @@ class _HotelDetailState extends State<HotelDetail> {
                     child: Center(
                       child: Icon(
                         Icons.favorite_border,
-                       color: Theme.of(context).accentColor,
+                        color: Theme.of(context).accentColor,
                         size: 48.0,
                       ),
                     ),

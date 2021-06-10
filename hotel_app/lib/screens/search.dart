@@ -60,7 +60,7 @@ class _SearchState extends State<Search> {
             ),
           ),
           StickyLabel(
-            text: 'Popular Keywords',
+            text: 'Từ khoá phổ biến',
             textColor: Theme.of(context).primaryColor,
           ),
           Container(
@@ -78,7 +78,7 @@ class _SearchState extends State<Search> {
             ),
           ),
           StickyLabel(
-            text: 'Favourite',
+            text: 'Yêu thích',
             textColor: Theme.of(context).primaryColor,
           ),
           SizedBox(height: 20.0),
